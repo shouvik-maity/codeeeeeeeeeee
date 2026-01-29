@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Pratyusha ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffe4ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Card Styles */
+.question-container, #messageContainer, #heartSlide {
+    background: #ffd6e5;
+    width: 90%;
+    max-width: 400px;
+    padding: 25px 20px 35px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* Headings */
+h1 { font-size: 22px; margin: 10px 0 5px; color: #333; }
+.name { font-size: 18px; color: #d6336c; margin-bottom: 18px; font-weight: 600; }
+
+/* Buttons */
+.btns { display: flex; justify-content: center; gap: 15px; position: relative; }
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    position: relative;
+}
+#yesBtn { background: #ff6f9e; animation: pulse 1.8s infinite; }
+#noBtn { background: #ff4757; position: absolute; right: 0; }
+#nextBtn { background: #ff6f9e; margin-top: 20px; display: none; }
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+/* Panda Emoji */
+.sticker, #heartPanda {
+    font-size: 80px;
+    display: block;
+    margin: 0 auto 10px;
+    line-height: 1;
+}
+.sticker { animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* Kiss Animation */
+.kiss { animation: kiss 0.6s ease-in-out 1; }
+@keyframes kiss { 0% { transform: scale(1); } 50% { transform: scale(1.2) rotate(5deg); } 100% { transform: scale(1); } }
+
+/* Panda jump on heart */
+@keyframes jumpKiss { 0% { transform: translateY(0) rotate(0deg); } 30% { transform: translateY(-80px) rotate(-15deg); } 60% { transform: translateY(-40px) rotate(10deg); } 100% { transform: translateY(0) rotate(0deg); } }
+
+/* Emoji burst */
+.cute { position: absolute; font-size: 24px; animation: floatUp 1.2s ease forwards; }
+@keyframes floatUp { from { opacity:1; transform:translateY(0) scale(1);} to { opacity:0; transform:translateY(-80px) scale(1.6);} }
+
+/* Letter Container */
+#messageContainer {
+    display: none;
+    max-width: 420px;
+    padding: 20px;
+    background: #fff0f6;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    text-align: left;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    overflow: hidden;
+}
+#messageContainer strong { color: #d6336c; font-size: 17px; }
+
+/* Sparkles */
+.sparkle {
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: sparkleUp linear forwards;
+}
+@keyframes sparkleUp { 0% {opacity:1; transform:translateY(0) scale(1);} 100% {opacity:0; transform:translateY(-60px) scale(1.5);} }
+
+/* Heart Slide */
+#heartSlide {
+    display: none;
+    max-width: 500px;
+    padding: 40px 20px;
+    border-radius: 20px;
+    background: #fff0f6;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+}
+#heartSlide .heart {
+    font-size: 80px; /* smaller heart now */
+    animation: pop 0.8s ease forwards, heartbeat 1.5s 0.8s infinite;
+}
+@keyframes pop { 0% { transform: scale(0); opacity:0;} 50% { transform: scale(1.2); opacity:1;} 100% { transform: scale(1); opacity:1;} }
+@keyframes heartbeat { 0%,100%{transform:scale(1);} 50%{transform:scale(1.15);} }
+#heartSlide .heartName { font-size: 28px; color: #d6336c; margin-top: 10px; font-weight:bold; }
+#heartPanda { position: relative; animation: jumpKiss 1s ease forwards; font-size:80px; margin-bottom:10px; }
+
+/* Confetti */
+.confetti { position: absolute; font-size: 18px; animation: confettiFall linear forwards; pointer-events:none; }
+@keyframes confettiFall { 0%{opacity:1; transform:translateY(0) rotate(0deg);} 100%{opacity:0; transform:translateY(300px) rotate(360deg);} }
+
+/* Responsive */
+@media (max-width:400px){
+    #heartSlide .heart { font-size:60px; }
+    #heartSlide .heartName { font-size:24px; }
+    #heartPanda { font-size:60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- First Question -->
+<div class="question-container" id="box">
+    <div id="panda" class="sticker">🐼</div>
+    <h1>Do you love me?</h1>
+    <div class="name">PRATYUSHA 💕</div>
+    <div class="btns">
+        <button id="yesBtn">Yes 💗</button>
+        <button id="noBtn">No 💔</button>
+    </div>
+</div>
+
+<!-- Love Letter -->
+<div id="messageContainer"></div>
+
+<!-- Heart Slide -->
+<div id="heartSlide">
+    <div id="heartPanda">🐼</div>
+    <div class="heart">❤️</div>
+    <div class="heartName">PRATYUSHA 💕</div>
+</div>
+
+<!-- Next Button -->
+<button id="nextBtn">Next 💌</button>
+
+<!-- Sounds -->
+<audio id="noSound" src="https://cdn.pixabay.com/audio/2021/08/04/audio_72d787b25d.mp3"></audio>
+<audio id="yesSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_60176ef59b.mp3"></audio>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const panda = document.getElementById("panda");
+const box = document.getElementById("box");
+const messageContainer = document.getElementById("messageContainer");
+const heartSlide = document.getElementById("heartSlide");
+const nextBtn = document.getElementById("nextBtn");
+
+const noSound = document.getElementById("noSound");
+const yesSound = document.getElementById("yesSound");
+
+/* NO button escape */
+["mouseover","touchstart"].forEach(evt=>{
+    noBtn.addEventListener(evt,()=>{
+        noSound.currentTime=0;
+        noSound.play();
+        const pad=10;
+        const rect=box.getBoundingClientRect();
+        noBtn.style.left=Math.random()*(rect.width-noBtn.offsetWidth-pad)+"px";
+        noBtn.style.top=Math.random()*(rect.height-noBtn.offsetHeight-pad)+"px";
+    });
+});
+
+/* YES click */
+yesBtn.addEventListener("click",()=>{
+    yesSound.play();
+    panda.classList.add("kiss");
+    emojiBurst();
+
+    setTimeout(()=>{
+        box.style.display="none";
+        messageContainer.style.display="block";
+        setTimeout(()=>{ messageContainer.style.opacity=1; },50);
+        messageContainer.innerHTML=`
+<strong>PRATYUSHA ❤️</strong><br><br>
+Tumi amar life e ashar porrr, amar jibon ta aste aste bodle geche.
+Age kichu chilo, kintu shob kichur moddhe o kono ekta shunnota chilo.
+Tumi ashar por shei shunnota ta shanti te bodle geche.<br><br>
+Tomar hasi, tomar qualities, tomar beauty, tomar soul —
+sob kichu amay bodle diyeche.
+Tumi amar din gulo ke lighttt diye bhoriye diyechooo,
+amar raat gulo ke shanti diye bhoriye diyecho.<br><br>
+Ami nijeke aaj beshi shanto, beshi bhalo, beshi puro mone hoiii —
+<strong>karon tumi amar shathe acho.</strong><br><br>
+Sarajibon tomar passe thakbo,
+tomar haath dhore… <strong>Chiro kaal.</strong><br><br>
+<strong>I LOVE U PRATYUSHA ❤️</strong><br><br>
+`;
+
+        nextBtn.style.display="block";
+        startContinuousSparkles(messageContainer);
+    },1500);
+});
+
+/* Next Button click → Final Heart */
+nextBtn.addEventListener("click",()=>{
+    messageContainer.style.display="none";
+    nextBtn.style.display="none";
+    heartSlide.style.display="block";
+    createConfetti();
+});
+
+/* Emoji Burst */
+function emojiBurst(){
+    const emojis=["💖","💞","✨","💕","🥰","💋"];
+    const rect=yesBtn.getBoundingClientRect();
+    for(let i=0;i<15;i++){
+        const e=document.createElement("div");
+        e.className="cute";
+        e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+        e.style.left=rect.left+Math.random()*yesBtn.offsetWidth+"px";
+        e.style.top=rect.top+Math.random()*yesBtn.offsetHeight+"px";
+        e.style.animationDelay=i*0.06+"s";
+        document.body.appendChild(e);
+        setTimeout(()=>e.remove(),1200);
+    }
+}
+
+/* Confetti for final slide */
+function createConfetti(){
+    const emojis=["💖","💞","✨","🎉","🥰","💋"];
+    for(let i=0;i<50;i++){
+        const e=document.createElement("div");
+        e.className="confetti";
+        e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+        e.style.left=Math.random()*window.innerWidth+"px";
+        e.style.top="-50px";
+        e.style.fontSize=(12+Math.random()*12)+"px";
+        e.style.animationDuration=(2+Math.random()*2)+"s";
+        document.body.appendChild(e);
+        setTimeout(()=>e.remove(),3000);
+    }
+}
+
+/* Continuous Floating Sparkles */
+function startContinuousSparkles(container){
+    setInterval(()=>{
+        const sparkleEmojis=["✨","💖","💞"];
+        const e=document.createElement("div");
+        e.className="sparkle";
+        e.innerText=sparkleEmojis[Math.floor(Math.random()*sparkleEmojis.length)];
+        e.style.left=Math.random()*container.offsetWidth+"px";
+        e.style.top=container.offsetHeight+"px";
+        e.style.animationDuration=(2+Math.random()*2)+"s";
+        container.appendChild(e);
+        setTimeout(()=>e.remove(),4000);
+    },300);
+}
+</script>
+</body>
+</html>
